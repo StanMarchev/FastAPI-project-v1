@@ -31,3 +31,8 @@ async def startup():
 @app.on_event("shutdown")
 async def shutdown():
     await database.disconnect()
+
+@app.get("/books/")
+async def get_all_books():
+    query = books.select()
+    return await database.fetch_all(query)

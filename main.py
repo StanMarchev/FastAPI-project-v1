@@ -1,6 +1,6 @@
 import databases
 import sqlalchemy
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
 
 
 DATABASE_URL = 'postgresql://postgres:pirata123@localhost:5432/store'
@@ -36,3 +36,12 @@ async def shutdown():
 async def get_all_books():
     query = books.select()
     return await database.fetch_all(query)
+
+
+@app.post("/books/")
+async def create_book(request: Request):
+    data = await request.json()
+    query = books.insert().values(**data)
+    last_record_id = await database.execute(query)
+
+    return {"id": last_record_id}

@@ -19,7 +19,7 @@ books = sqlalchemy.Table(
 )
 
 engine = sqlalchemy.create_engine(DATABASE_URL)
-metadata.create_all()
+metadata.create_all(engine)
 
 app = FastAPI()
 

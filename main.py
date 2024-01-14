@@ -17,9 +17,9 @@ books = sqlalchemy.Table(
     sqlalchemy.Column("title", sqlalchemy.String),
     sqlalchemy.Column("author",sqlalchemy.String ),
 )
-
-engine = sqlalchemy.create_engine(DATABASE_URL)
-metadata.create_all(engine)
+#
+# engine = sqlalchemy.create_engine(DATABASE_URL)
+# metadata.create_all(engine)
 
 app = FastAPI()
 

@@ -17,7 +17,6 @@ books = sqlalchemy.Table(
     sqlalchemy.Column("title", sqlalchemy.String),
     sqlalchemy.Column("author",sqlalchemy.String ),
     sqlalchemy.Column("pages", sqlalchemy.Integer),
-    sqlalchemy.Column("reader_id", sqlalchemy.ForeignKey("readers.id"), nullable=False, index=True)
 )
 
 readers = sqlalchemy.Table(
@@ -26,6 +25,15 @@ readers = sqlalchemy.Table(
     sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
     sqlalchemy.Column("first_name", sqlalchemy.String),
     sqlalchemy.Column("last_name",sqlalchemy.String ),
+)
+
+
+readers_books =sqlalchemy.Table(
+    "readers_books",
+    metadata,
+    sqlalchemy.Column("id", sqlalchemy.Integer, primary_key=True),
+    sqlalchemy.Column("books_id", sqlalchemy.ForeignKey("books_id"), nullable=False),
+    sqlalchemy.Column("readers_id",sqlalchemy.ForeignKey("readers_id"), nullable=False ),
 )
 
 
